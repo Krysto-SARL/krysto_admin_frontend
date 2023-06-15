@@ -1,44 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,100;1,300&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "./SASS/reset";
+@import "./SASS/variables";
 
-html {
-  font-size: 62, 5%;
-}
 
-body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-  background-color: #333;
-  color: whitesmoke;
-}
 
-a {
-  text-decoration: none;
-  color: white;
-}
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-p {
-  line-height: 1.7;
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  line-height: 2.2;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  margin-bottom: 10px;
-}
 
 .container {
   width: 100%;
@@ -49,7 +15,7 @@ h3 {
   text-align: center;
 }
 
-.title {
+.title{
   font-size: 1.5rem;
   text-align: center;
   margin: 1rem 0;
@@ -60,8 +26,9 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #9097e1;
+  border-bottom: 1px solid $primary;
   margin-bottom: 60px;
+  
 }
 
 .header ul {
@@ -78,12 +45,14 @@ h3 {
   padding: 0 1rem;
 }
 
-.footer {
+
+.footer{
   height: auto;
-  background-color: #9097e1;
+  background-color: $primary;
   margin-top: 5rem;
-  color: #333;
+  color: $dark;
   font-weight: bold;
+
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -96,7 +65,7 @@ h3 {
 }
 
 .heading p {
-  color: #9097e1;
+  color: $primary;
   font-size: 1rem;
 }
 
@@ -108,19 +77,19 @@ h3 {
   align-items: center;
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: $dark;
 }
 
 .boxes div {
   padding: 30px;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  color: #333;
+  color: $dark;
 }
 
 .boxes h2 {
   margin-top: 20px;
-  color: #333;
+  color: $dark;
 }
 
 .boxes a:hover {
@@ -157,7 +126,7 @@ h3 {
   padding: 10px 20px;
   border: 1px solid rgb(25, 25, 43);
   border-radius: 5px;
-  background: #9097e1;
+  background: $primary;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -176,7 +145,7 @@ h3 {
 
 .btn-reverse {
   background: #fff;
-  color: #333;
+  color: $dark;
 }
 
 .btn-block {
@@ -190,7 +159,7 @@ h3 {
 }
 
 .btn-danger {
-  background: #d54848;
+  background: $danger;
   border: none;
   color: white;
 }
@@ -202,7 +171,7 @@ h3 {
 
 .btn:hover {
   transform: scale(0.98);
-  box-shadow: rgba(0, 0, 0, 0.821) 0px 5px 15px;
+  box-shadow: $shadow;
 }
 
 .ticket-created {
@@ -228,11 +197,19 @@ h3 {
   font-size: 1.3rem;
 }
 
-.container-flex-center {
+
+
+
+
+
+
+
+.container-flex-center{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
 }
 
 .ticket-headings {
@@ -245,62 +222,60 @@ h3 {
   padding: 10px 15px;
   border-radius: 5px;
   text-align: center;
-  color: #333;
+  color: $dark;
   font-size: 0.6rem;
   font-weight: 700;
-  background-color: #9097e1;
+  background-color: $primary;
   text-transform: uppercase;
   color: white;
+ 
 }
 
+
+
 .collect-done {
-  background-color: #0f9a46;
+  background-color: $green;
   color: #fff;
   border-radius: 10px;
 }
 
 .collect-todo {
-  background-color: #d27306;
+  background-color: $warning;
   color: #fff;
   border-radius: 10px;
 }
 
 .collect-fail {
-  background-color: #d54848;
+  background-color: $danger;
   color: #fff;
   border-radius: 10px;
 }
-
 .role-admin {
-  background-color: #d54848;
+  background-color: $danger;
   color: #fff;
   border-radius: 10px;
 }
-
 .message-not_read {
-  background-color: #d54848;
+    background-color: $danger;
+
   color: #fff;
   border-radius: 10px;
 }
-
 .message-Archived {
-  background-color: #0f9a46;
+  background-color: $green;
   color: #fff;
   border-radius: 10px;
 }
-
 .role-staff {
-  background-color: #9097e1;
+  background-color: $primary;
   color: #fff;
   border-radius: 10px;
 }
-
 .role-partner {
-  background-color: #0f9a46;
+  background-color: $green;
   color: #fff;
   border-radius: 10px;
 }
-
 .ticket-page {
   position: relative;
   text-align: left;
@@ -311,9 +286,9 @@ h3 {
   align-items: center;
   justify-content: space-between;
   font-size: 1rem;
-}
-.ticket-page h2 span {
-  color: #9097e1;
+  span{
+    color: $primary;
+  }
 }
 
 .ticket-page .btn {
@@ -329,10 +304,10 @@ h3 {
   margin: 20px 0;
   font-size: 17px;
   background-color: #f4f4f4;
-  border: 1px #9097e1 solid;
+  border: 1px $primary solid;
   padding: 10px 15px;
   border-radius: 5px;
-  color: #333;
+  color: $dark;
 }
 
 .note {
@@ -361,7 +336,7 @@ h3 {
 }
 
 .delete-note {
-  color: #d54848;
+  color: $danger;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
@@ -371,7 +346,7 @@ h3 {
 .btn-close {
   background: none;
   border: none;
-  color: #d54848;
+  color:  $danger;
   position: absolute;
   top: -1rem;
   right: 5px;
@@ -380,24 +355,24 @@ h3 {
 }
 
 .btn-close:hover {
-  color: #d54848;
+  color: $danger;
   transform: scale(0.98);
 }
 
 p.status-in-progress {
-  color: #d27306;
+  color: $warning;
 }
 
 p.status-waiting {
-  color: #d54848;
+  color: $danger;
 }
 
 p.status-ready {
-  color: #9097e1;
+  color: $primary;
 }
 
 p.status-complete {
-  color: #0f9a46;
+  color: $green;
 }
 
 footer {
@@ -406,61 +381,72 @@ footer {
   text-align: center;
 }
 
-.modal-title {
+.modal-title{
   margin: 20px 0;
   text-align: center;
 }
 
 .certificat-container {
-  border: 5px #9097e1 solid;
+  border: 5px $primary solid;
   padding: 1rem;
+  .title-certificat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+  }
 }
-.certificat-container .title-certificat-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  width: 100%;
-  text-align: center;
-}
-
 .leaflet-container {
+
   height: 20rem;
   background-color: #fff;
+
 }
 
-.documentation {
+
+
+.documentation{
   text-align: left;
-}
-.documentation h1, .documentation h2 {
-  text-align: center;
-  margin: 1rem 0;
-}
-.documentation p {
-  text-align: center;
-  color: #9097e1;
+  h1, h2 {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  p{
+    text-align: center;
+    color: $primary;
+  }
 }
 
 @media (max-width: 600px) {
   .boxes {
     grid-template-columns: 1fr;
   }
+
   .form {
     width: 90%;
   }
+
   .ticket-created h2,
   .heading h1 {
     font-size: 2rem;
   }
+
   .heading p {
     font-size: 1.5rem;
   }
 }
+
+
 .button-container {
   display: flex;
   justify-content: center;
   align-items: center;
+
+
+  button{
+    margin: 0 1rem;
+  }
+ 
 }
-.button-container button {
-  margin: 0 1rem;
-}/*# sourceMappingURL=index.css.map */
