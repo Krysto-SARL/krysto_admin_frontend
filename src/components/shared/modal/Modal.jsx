@@ -1,29 +1,28 @@
-import { useState } from "react";
-import "./Modal.css";
+import React from 'react';
+import './Modal.css';
 
-function Modal({ titleModal, btnTxt , children}) {
-  const [modal, setModal] = useState(false);
-
-  const toggleModal = () => {
-    setModal(!modal);
+function Modal({ titleModal, btnTxt, isOpen, onClose, children }) {
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
   };
 
   return (
     <>
-      <button onClick={toggleModal} className="btn btn-sm">
-        {btnTxt}
-      </button>
 
-      {modal ? ( 
-         <div  className="overlay">
-         <div className="modal">
-           <h2 className="modal-content">{titleModal}</h2>
-               {children}
-           <button onClick={toggleModal} className="btn btn-close">X</button>
-         </div>
-       </div>
-      ) : (" ") }
-     
+
+      {isOpen && (
+        <div className="overlay" onClick={handleOverlayClick}>
+          <div className="modal">
+            <h2 className="modal-content">{titleModal}</h2>
+            {children}
+            <button onClick={onClose} className="btn btn-close">
+              X
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

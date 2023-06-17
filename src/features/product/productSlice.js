@@ -28,11 +28,31 @@ export const getProducts = createAsyncThunk(
   },
 )
 
-export const getproduct = createAsyncThunk(
+export const getProduct = createAsyncThunk(
   'product/get',
   async (productId, thunkAPI) => {
     try {
-      return await productService.getOrder(productId)
+      return await productService.getProduct(productId)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  },
+)
+
+export const createProduct = createAsyncThunk(
+  'product/create',
+  async (productData, thunkAPI) => {
+    try {
+      return await productService.createProduct(
+        productData,
+        productData.categoryId,
+      )
     } catch (error) {
       const message =
         (error.response &&
@@ -67,19 +87,32 @@ export const productSlice = createSlice({
         state.message = action.payload
         state.products = []
       })
-      .addCase(getproduct.pending, (state) => {
+      .addCase(getProduct.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getproduct.fulfilled, (state, action) => {
+      .addCase(getProduct.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.product = action.payload
       })
-      .addCase(getproduct.rejected, (state, action) => {
+      .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
         state.product = {}
+      })
+      .addCase(createProduct.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        // Mettez à jour state.products avec le nouveau produit créé si nécessaire
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
       })
   },
 })
