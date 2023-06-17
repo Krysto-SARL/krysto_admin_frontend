@@ -1,43 +1,47 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { BackButton } from '../../../components/shared/BackButton'
-import Spinner from '../../../components/shared/spinner/Spinner'
-
-import { getUser } from '../../../features/user/userSlice'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BackButton } from '../../../components/shared/BackButton';
+import Spinner from '../../../components/shared/spinner/Spinner';
+import { deleteUser, getUser } from '../../../features/user/userSlice';
 
 function PrivateUserDetails() {
-  const { user, isLoading, isError, message } = useSelector(
-    (state) => state.user,
-  )
-  const params = useParams()
-  const dispatch = useDispatch()
+  const { user, isLoading, isError, message } = useSelector((state) => state.user);
+  const params = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
-    dispatch(getUser(params.id))
-  }, [dispatch, isError, message, params.id])
+    dispatch(getUser(params.id));
+  }, [dispatch, isError, message, params.id]);
+
+  const handleDelete = () => {
+    dispatch(deleteUser(user.data._id));
+    toast.success('Utilisateur supprimé avec succès');
+    navigate('/private/gestion-utilisateurs');
+  };
 
   if (isLoading || !user.data) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   if (isError) {
-    return <h3>Une erreur est survenue, merci de réessayer.</h3>
+    return <h3>Une erreur est survenue, merci de réessayer.</h3>;
   }
 
   return (
     <div className="ticket-page">
       <header className="ticket-header">
         <BackButton url="/private/gestion-utilisateurs" />
-        {user.data ? (
+        {user.data.role === 'partner' || user.data.role === 'recycler' ? (
           <>
             <h2>
-              Raison sociale : {user.data.compagny.compagnyName}{' '}
-              <span>{user.email}</span>
+              Raison sociale : {user.data.compagny.compagnyName} <span>{user.data.email}</span>
             </h2>
             <h2> RIDET : {user.data.compagny.ridet}</h2>
           </>
@@ -46,8 +50,7 @@ function PrivateUserDetails() {
         )}
 
         <h2>
-          ID de l'utilisateur : {user.data._id}{' '}
-          <span className={`status `}>{user.data.role}</span>
+          ID de l'utilisateur : {user.data._id} <span className={`status ${user.data.role}`}>{user.data.role}</span>
         </h2>
 
         <hr />
@@ -55,31 +58,24 @@ function PrivateUserDetails() {
         <section>
           {user.data.collectPoints &&
             user.data.collectPoints.map((collectPoint) => (
-              <div  key={collectPoint._id}>
-              <p>Identifiant du point de collecte : {collectPoint._id}</p>
-              <Link className='btn btn-sm'> Detail du point de collecte</Link>
+              <div key={collectPoint._id}>
+                <p>Identifiant du point de collecte : {collectPoint._id}</p>
+                <Link to={`/private/collecte/${collectPoint._id}`} className="btn btn-sm">
+                  Détail du point de collecte
+                </Link>
               </div>
             ))}
         </section>
-       
       </header>
 
       <div className="button-container">
         <button className="btn btn-block">Modifier l'utilisateur</button>
-        <button className="btn btn-block btn-danger">
+        <button className="btn btn-block btn-danger" onClick={handleDelete}>
           Supprimer l'utilisateur
         </button>
       </div>
-
-      {/* <section>
-        <h5>Point de collecte du client</h5>
-        {user.collectPoints.map((collectPoint) => (
-          <div key={collectPoint._id}>{collectPoint.waste}</div>
-          // <CollectItem key={collect._id} collect={collect}/>
-        ))}
-      </section> */}
     </div>
-  )
+  );
 }
 
-export default PrivateUserDetails
+export default PrivateUserDetails;

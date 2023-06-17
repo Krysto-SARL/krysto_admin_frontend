@@ -183,13 +183,13 @@ export const userSlice = createSlice({
         if (Array.isArray(state.users)) {
           state.users = state.users.filter((user) => user.id !== action.payload)
         }
-        // Recharger la page
-        toast.error('Utilisateur en cours de suppresion')
+        // // Recharger la page
+        // toast.error('Utilisateur en cours de suppresion')
 
-        // Afficher le toast après 3 secondes
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000)
+        // // Afficher le toast après 3 secondes
+        // setTimeout(() => {
+        //   window.location.reload()
+        // }, 2000)
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.isLoading = false

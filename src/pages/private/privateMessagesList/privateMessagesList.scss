@@ -1,0 +1,15 @@
+.info-box-messages{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    text-align: center;
+    span{
+        font-weight: bolder;
+        color: red;
+    }
+    .warning{
+        color: orange;
+    }
+}

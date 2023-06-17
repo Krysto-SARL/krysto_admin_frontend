@@ -5,6 +5,7 @@ import { getOrders } from '../../../features/order/orderSlice';
 import './orderList.css';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/shared/searchBar/SearchBar';
+import Ticket from '../../../components/shared/ticket/Ticket';
 
 function PrivateOrderList() {
   const { orders, isLoading } = useSelector(
@@ -41,21 +42,21 @@ function PrivateOrderList() {
       <SearchBar onSearch={handleSearch} />
 
       <section>
-        <div className="order-item">
+        <div className="ticket-headings">
           <p>n° commande</p>
           <p>Date de création</p>
           <p>Status</p>
           <p>Actions</p>
         </div>
         {filteredOrders.map((order) => (
-          <div className="order-item" key={order.id}>
+          <Ticket key={order.id}>
             <p>{order.numOrder}</p>
             <p>{new Date(order.createdAt).toLocaleDateString()}</p>
             <p>{order.status}</p>
             <Link to={`/private/details-commande/${order.id}`} className="btn btn-sm">
               détail de la commande
             </Link>
-          </div>
+          </Ticket>
         ))}
       </section>
     </>
