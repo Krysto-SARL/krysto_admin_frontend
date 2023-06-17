@@ -15,6 +15,12 @@ import PrivateUserDetails from './pages/private/privateUserDetails/PrivateUserDe
 import PrivateOrderList from './pages/private/privateOrderList/PrivateOrderList'
 import PrivateOrderDetails from './pages/private/privateOrderDetails/PrivateOrderDetails'
 import PrivateProductList from './pages/private/privateProductList/PrivateProductList'
+import PrivateMessagesList from './pages/private/privateMessagesList/PrivateMessagesList'
+import PrivateProductCategoriesList from './pages/private/privateProductCategoriesList/PrivateProductCategoriesList'
+import PrivateServicesList from './pages/private/privateServicesList/PrivateServicesList'
+import PrivateCollectPointsList from './pages/private/privateCollectPointsList/PrivateCollectPointsList'
+import PrivateWasteList from './pages/private/privateWasteList/PrivateWasteList'
+import PrivateCertificatsList from './pages/private/privateCertificatsList/PrivateCertificatsList'
 
 function App() {
   return (
@@ -45,8 +51,32 @@ function App() {
                 element={<PrivateOrderDetails />}
               />
               <Route
+                path="/private/liste-categorie-produits"
+                element={<PrivateProductCategoriesList />}
+              />
+              <Route
                 path="/private/liste-produits"
                 element={<PrivateProductList />}
+              />
+              <Route
+                path="/private/liste-services"
+                element={<PrivateServicesList />}
+              />
+              <Route
+                path="/private/liste-messages"
+                element={<PrivateMessagesList />}
+              />
+              <Route
+                path="/private/liste-points-de-collectes"
+                element={<PrivateCollectPointsList />}
+              />
+              <Route
+                path="/private/liste-types-dechets"
+                element={<PrivateWasteList />}
+              />
+              <Route
+                path="/private/liste-certificats"
+                element={<PrivateCertificatsList />}
               />
             </Route>
           </Routes>

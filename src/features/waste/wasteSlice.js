@@ -10,8 +10,6 @@ const initialState = {
   message: '',
 }
 
-
-
 // Get all wastes
 export const getWastes = createAsyncThunk(
   'waste/getAll',
@@ -46,8 +44,6 @@ export const getWaste = createAsyncThunk(
   },
 )
 
-
-
 // create new waste
 export const createWaste = createAsyncThunk(
   'waste/createWaste',
@@ -64,9 +60,6 @@ export const createWaste = createAsyncThunk(
   },
 )
 
-
-
-
 export const wasteSlice = createSlice({
   name: 'waste',
   initialState,
@@ -75,7 +68,7 @@ export const wasteSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-     
+
       .addCase(getWastes.pending, (state) => {
         state.isLoading = true
       })
@@ -90,7 +83,7 @@ export const wasteSlice = createSlice({
         state.message = action.payload
         state.wastes = null
       })
-     
+
       .addCase(getWaste.pending, (state) => {
         state.isLoading = true
       })
@@ -106,19 +99,17 @@ export const wasteSlice = createSlice({
         state.waste = null
       })
       .addCase(createWaste.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true
       })
       .addCase(createWaste.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-
+        state.isLoading = false
+        state.isSuccess = true
       })
       .addCase(createWaste.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
       })
-  
   },
 })
 

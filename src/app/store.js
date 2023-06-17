@@ -7,6 +7,7 @@ import collectPointReducer from '../features/collectPoint/collectPointSlice'
 import wasteReducer from '../features/waste/wasteSlice'
 import certificatReducer from '../features/certificat/certificatSlice'
 import orderReducer from '../features/order/orderSlice'
+import productCategoryReducer from '../features/productCategory/productCategorySlice'
 import productReducer from '../features/product/productSlice'
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     collectPoint: collectPointReducer,
     waste: wasteReducer,
     certificat: certificatReducer,
+    productCategory: productCategoryReducer,
     product: productReducer,
     order: orderReducer,
   },

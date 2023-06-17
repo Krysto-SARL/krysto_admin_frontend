@@ -2,7 +2,11 @@ import React from 'react'
 
 function Documentation() {
   return (
-    <div>Documentation</div>
+    <>
+    <section className="headings">
+        <h1>Documentation</h1>
+    </section>
+    </>
   )
 }
 

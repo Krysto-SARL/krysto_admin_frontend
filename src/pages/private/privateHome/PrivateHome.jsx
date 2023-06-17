@@ -5,14 +5,14 @@ function PrivateHome() {
   return (
     <>
     <section className="heading">
-        <h1>Que voulez vous faire ?</h1>
+        <h1>Bienvenue sur l'administration du site Krysto</h1>
     </section>
 <section>
 
       <Link className="btn" to={'/private/gestion-utilisateurs'}>
         Utilisateurs
       </Link>
-      <Link className="btn" to={'/private/gestion-utilisateurs'}>
+      <Link className="btn" to={'/private/liste-messages'}>
         Messages
       </Link>
       <Link className="btn" to={'/private/liste-categorie-produits'}>
@@ -27,16 +27,13 @@ function PrivateHome() {
       <Link className="btn" to={'/private/order-liste'}>
         Commandes
       </Link>
-      <Link className="btn" to={'/private/collectes'}>
+      <Link className="btn" to={'/private/liste-points-de-collectes'}>
         Point de collecte
       </Link>
-      <Link className="btn" to={'/private/collectes'}>
-        Collectes
-      </Link>
-      <Link className="btn" to={'/private/collectes'}>
+      <Link className="btn" to={'/private/liste-types-dechets'}>
         Dechets
       </Link>
-      <Link className="btn" to={'/private/collectes'}>
+      <Link className="btn" to={'/private/liste-certificats'}>
         Certificats
       </Link>
       <Link className="btn btn-reverse" to={'/documentation'}>

@@ -7,7 +7,7 @@ function Footer() {
         <ul className='container-flex-center'>
           
           <li>
-            <Link to={"/private/documentation"}>Documentation</Link>
+            <Link to={"/documentation"}>Documentation</Link>
             </li>
         
         </ul>
