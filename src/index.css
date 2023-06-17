@@ -463,4 +463,13 @@ footer {
 }
 .button-container button {
   margin: 0 1rem;
+}
+
+.btn-tableau {
+  display: flex;
+  height: 100%;
+}
+
+.table-container {
+  width: 100%;
 }/*# sourceMappingURL=index.css.map */

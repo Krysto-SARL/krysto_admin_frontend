@@ -1,0 +1,9 @@
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.order-item p {
+  text-align: center;
+}/*# sourceMappingURL=orderList.css.map */
