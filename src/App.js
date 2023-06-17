@@ -14,6 +14,7 @@ import PrivateUsers from './pages/private/PrivateUserList/PrivateUsers'
 import PrivateUserDetails from './pages/private/privateUserDetails/PrivateUserDetails'
 import PrivateOrderList from './pages/private/privateOrderList/PrivateOrderList'
 import PrivateOrderDetails from './pages/private/privateOrderDetails/PrivateOrderDetails'
+import PrivateProductList from './pages/private/privateProductList/PrivateProductList'
 
 function App() {
   return (
@@ -42,6 +43,10 @@ function App() {
               <Route
                 path="/private/details-commande/:id"
                 element={<PrivateOrderDetails />}
+              />
+              <Route
+                path="/private/liste-produits"
+                element={<PrivateProductList />}
               />
             </Route>
           </Routes>
