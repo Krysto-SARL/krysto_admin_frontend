@@ -8,7 +8,7 @@ import Spinner from '../../../components/shared/spinner/Spinner'
 import { getUser } from '../../../features/user/userSlice'
 
 function PrivateUserDetails() {
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
+  const { user, isLoading, isError, message } = useSelector(
     (state) => state.user,
   )
   const params = useParams()

@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { BackButton } from '../../../components/shared/BackButton'
 import Spinner from '../../../components/shared/spinner/Spinner'
 
 
 import { getMessages } from '../../../features/message/messageSlice'
 
 function PrivateMessagesList() {
-    const { messages, isLoading, isSuccess, isError, message } = useSelector(
+    const { messages, isLoading, isError, message } = useSelector(
         (state) => state.message,
       )
 

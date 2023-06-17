@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/shared/searchBar/SearchBar';
 
 function PrivateOrderList() {
-  const { orders, isLoading, isSuccess, isError } = useSelector(
+  const { orders, isLoading } = useSelector(
     (state) => state.order
   );
 

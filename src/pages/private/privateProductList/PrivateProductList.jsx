@@ -12,7 +12,7 @@ import { toast } from 'react-toastify'
 import Ticket from '../../../components/shared/ticket/Ticket'
 
 function PrivateProductList() {
-  const { products, isLoading } = useSelector((state) => state.product)
+  const { products} = useSelector((state) => state.product)
   const { productCategories } = useSelector((state) => state.productCategory)
 
   const dispatch = useDispatch()

@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { getUsers , reset } from "../../../features/user/userSlice"
+import { getUsers } from "../../../features/user/userSlice"
 import Spinner from "../../../components/shared/spinner/Spinner"
 import UserItem from "../../../components/privateUser/UserItem"
 
 function PrivateUsers() {
-    const {users, isLoading, isSuccess, isError} = useSelector((state) => state.user)
+    const {users, isLoading} = useSelector((state) => state.user)
 
     const dispatch = useDispatch()
 

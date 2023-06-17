@@ -5,7 +5,7 @@ import { getCollectPoints } from '../../../features/collectPoint/collectPointSli
 import Spinner from '../../../components/shared/spinner/Spinner'
 
 function PrivateCollectPointsList() {
-    const { collectPoints, isLoading, isSuccess, isError, message } = useSelector(
+    const { collectPoints, isLoading, isError, message } = useSelector(
         (state) => state.collectPoint,
       )
 

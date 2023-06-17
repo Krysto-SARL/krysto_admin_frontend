@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { BackButton } from '../../../components/shared/BackButton'
 import Spinner from '../../../components/shared/spinner/Spinner'
 
 import { getOrder } from '../../../features/order/orderSlice'
 
 function PrivateOrderDetails() {
-  const { order, isLoading, isSuccess, isError, message } = useSelector(
+  const { order, isLoading, isError, message } = useSelector(
     (state) => state.order,
   )
   const params = useParams()

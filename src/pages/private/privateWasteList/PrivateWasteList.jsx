@@ -5,7 +5,7 @@ import { getWastes } from '../../../features/waste/wasteSlice'
 import Spinner from '../../../components/shared/spinner/Spinner'
 
 function PrivateWasteList() {
-    const { wastes, isLoading, isSuccess, isError, message } = useSelector(
+    const { wastes, isLoading,isError, message } = useSelector(
         (state) => state.waste,
       )
 

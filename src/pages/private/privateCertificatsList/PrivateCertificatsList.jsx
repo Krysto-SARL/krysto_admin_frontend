@@ -5,7 +5,7 @@ import { getCertificats } from '../../../features/certificat/certificatSlice'
 import Spinner from '../../../components/shared/spinner/Spinner'
 
 function PrivateCertificatsList() {
-    const { certificats, isLoading, isSuccess, isError, message } = useSelector(
+    const { certificats, isLoading, isError, message } = useSelector(
         (state) => state.certificat,
       )
 

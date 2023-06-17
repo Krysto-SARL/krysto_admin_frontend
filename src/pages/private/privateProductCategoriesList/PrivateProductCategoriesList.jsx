@@ -14,7 +14,7 @@ import Ticket from '../../../components/shared/ticket/Ticket';
 
 
 function PrivateProductCategoriesList() {
-  const { productCategories, isLoading, isSuccess, isError } = useSelector(
+  const { productCategories, isLoading} = useSelector(
     (state) => state.productCategory
   );
 
