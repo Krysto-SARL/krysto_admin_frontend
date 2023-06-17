@@ -44,7 +44,7 @@ function PrivateWasteList() {
           <div>{waste.wasteCategory}</div>
           <div>{waste.détails}</div>
          <div>
-          <Link className='btn btn-sm'>details</Link>
+          <Link to={`/private/waste-details/${waste._id}`} className='btn btn-sm'>details</Link>
          </div>
         </Ticket>
       ))}

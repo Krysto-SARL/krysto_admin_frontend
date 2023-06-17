@@ -21,6 +21,7 @@ import PrivateServicesList from './pages/private/privateServicesList/PrivateServ
 import PrivateCollectPointsList from './pages/private/privateCollectPointsList/PrivateCollectPointsList'
 import PrivateWasteList from './pages/private/privateWasteList/PrivateWasteList'
 import PrivateCertificatsList from './pages/private/privateCertificatsList/PrivateCertificatsList'
+import PrivateWasteDetails from './pages/private/privateWasteDetails/PrivateWasteDetails'
 
 function App() {
   return (
@@ -73,6 +74,10 @@ function App() {
               <Route
                 path="/private/liste-types-dechets"
                 element={<PrivateWasteList />}
+              />
+              <Route
+                path="/private/waste-details/:id"
+                element={<PrivateWasteDetails />}
               />
               <Route
                 path="/private/liste-certificats"
