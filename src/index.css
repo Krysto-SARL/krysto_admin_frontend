@@ -472,4 +472,9 @@ footer {
 
 .table-container {
   width: 100%;
+}
+
+.leaflet-container {
+  height: 20rem;
+  background-color: #fff;
 }/*# sourceMappingURL=index.css.map */

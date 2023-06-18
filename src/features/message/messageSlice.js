@@ -27,6 +27,7 @@ export const getMessages = createAsyncThunk(
     }
   },
 )
+
 export const getMessage = createAsyncThunk(
   'messages/get',
   async (messageId, thunkAPI) => {
@@ -43,6 +44,7 @@ export const getMessage = createAsyncThunk(
     }
   },
 )
+
 export const closeMessage = createAsyncThunk(
   'messages/close',
   async (messageId, thunkAPI) => {
@@ -60,10 +62,9 @@ export const closeMessage = createAsyncThunk(
   },
 )
 
-// create new message
 export const createNewMessage = createAsyncThunk(
   'messages/createNew',
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       return await messageService.createNewMessage()
     } catch (error) {
@@ -80,11 +81,10 @@ export const messageSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-
       .addCase(getMessages.pending, (state) => {
         state.isLoading = true
       })
@@ -97,9 +97,8 @@ export const messageSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.messages = null
+        state.messages = []
       })
-
       .addCase(getMessage.pending, (state) => {
         state.isLoading = true
       })
@@ -112,12 +111,12 @@ export const messageSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.messageData = null
+        state.messageData = {}
       })
       .addCase(createNewMessage.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createNewMessage.fulfilled, (state, action) => {
+      .addCase(createNewMessage.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = true
       })
@@ -126,16 +125,15 @@ export const messageSlice = createSlice({
         state.isError = true
         state.messageData = action.payload
       })
-
       .addCase(closeMessage.fulfilled, (state, action) => {
         state.isLoading = false
-        console.log(state.messages)
-        state.messages.map((messageData) =>
-          messageData._id === action.payload._id
-            ? // console.log(messageData.data.status),
-              (messageData.status = 'Archived')
-            : messageData,
-        )
+        if (Array.isArray(state.messages)) {
+          state.messages = state.messages.map((messageData) =>
+            messageData._id === action.payload._id
+              ? { ...messageData, status: 'Archived' }
+              : messageData,
+          )
+        }
       })
   },
 })

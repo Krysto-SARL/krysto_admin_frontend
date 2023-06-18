@@ -18,13 +18,28 @@ const createNewCollectPoint = async () => {
   return response.data
 }
 
+const uploadQRCode = async (collectPointId, qrCodeFile) => {
+  const formData = new FormData()
+  formData.append('file', qrCodeFile)
 
+  const response = await axios.put(
+    `${API_URL}/${collectPointId}/qr`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  )
 
+  return response.data
+}
 const collectPointService = {
   getCollectPoints,
   getCollectPoint,
   createNewCollect,
   createNewCollectPoint,
+  uploadQRCode,
 }
 
 export default collectPointService

@@ -70,9 +70,9 @@ function Login() {
           Bienvenue sur l'application KRYSTO-GO !
          </section>
           <Link className="btn " to={"/private/home"}>
-            Accueil
+            Acceder a l'administration
           </Link>
-          <Link className="btn btn-reverse" to={"/private/documentation"}>
+          <Link className="btn btn-reverse" to={"/documentation"}>
             Documentation
           </Link>
         </>

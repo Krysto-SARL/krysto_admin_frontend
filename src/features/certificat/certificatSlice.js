@@ -10,8 +10,6 @@ const initialState = {
   message: '',
 }
 
-
-
 // Get all certificats
 export const getCertificats = createAsyncThunk(
   'certificat/getAll',
@@ -33,7 +31,7 @@ export const getCertificat = createAsyncThunk(
   'certificat/get',
   async (certificatId, thunkAPI) => {
     try {
-      return await certificatService.getWaste(certificatId)
+      return await certificatService.getCertificat(certificatId)
     } catch (error) {
       const message =
         (error.response &&
@@ -54,7 +52,7 @@ export const certificatSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-     
+
       .addCase(getCertificats.pending, (state) => {
         state.isLoading = true
       })
@@ -69,7 +67,7 @@ export const certificatSlice = createSlice({
         state.message = action.payload
         state.certificats = null
       })
-     
+
       .addCase(getCertificat.pending, (state) => {
         state.isLoading = true
       })
@@ -84,8 +82,6 @@ export const certificatSlice = createSlice({
         state.message = action.payload
         state.certificat = null
       })
-
-  
   },
 })
 

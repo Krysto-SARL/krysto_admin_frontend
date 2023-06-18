@@ -10,6 +10,7 @@ import Modal from '../../../components/shared/modal/Modal'
 import { getProductCategories } from '../../../features/productCategory/productCategorySlice'
 import { toast } from 'react-toastify'
 import Ticket from '../../../components/shared/ticket/Ticket'
+import { BackButton } from '../../../components/shared/BackButton'
 
 function PrivateProductList() {
   const { products} = useSelector((state) => state.product)
@@ -76,6 +77,7 @@ function PrivateProductList() {
   return (
     <>
       <section className="headings">
+      <BackButton url={'/private/home'} />
         <h1>Gestion des produits</h1>
 
         <button onClick={openNewProductModal} className="btn ">

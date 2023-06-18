@@ -22,6 +22,9 @@ import PrivateCollectPointsList from './pages/private/privateCollectPointsList/P
 import PrivateWasteList from './pages/private/privateWasteList/PrivateWasteList'
 import PrivateCertificatsList from './pages/private/privateCertificatsList/PrivateCertificatsList'
 import PrivateWasteDetails from './pages/private/privateWasteDetails/PrivateWasteDetails'
+import PrivateMessageDetails from './pages/private/privateMessageDetails/PrivateMessageDetails'
+import PrivateCollectPointDetails from './pages/private/privateCollectPointDetails/PrivateCollectPointDetails'
+import PrivateCertificatDetails from './pages/private/privateCertificatDetails/PrivateCertificatDetails'
 
 function App() {
   return (
@@ -78,6 +81,18 @@ function App() {
               <Route
                 path="/private/waste-details/:id"
                 element={<PrivateWasteDetails />}
+              />
+              <Route
+                path="/private/message-details/:id"
+                element={<PrivateMessageDetails />}
+              />
+              <Route
+                path="/private/certificat-details/:id"
+                element={<PrivateCertificatDetails />}
+              />
+              <Route
+                path="/private/details-point-de-collecte/:id"
+                element={<PrivateCollectPointDetails />}
               />
               <Route
                 path="/private/liste-certificats"

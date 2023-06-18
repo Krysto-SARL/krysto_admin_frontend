@@ -5,6 +5,7 @@ import Spinner from "../../../components/shared/spinner/Spinner"
 import UserItem from "../../../components/privateUser/UserItem"
 import Ticket from "../../../components/shared/ticket/Ticket"
 import { Link } from "react-router-dom"
+import { BackButton } from "../../../components/shared/BackButton"
 
 function PrivateUsers() {
     const {users, isLoading} = useSelector((state) => state.user)
@@ -26,6 +27,7 @@ function PrivateUsers() {
     <>
       
       <section className="headings">
+          <BackButton url={'/private/home'}/>
         <h1>Gestion des utilisateurs</h1>
         <div className="btn-container">
           <button className="btn">Ajouter un utilisateur</button>

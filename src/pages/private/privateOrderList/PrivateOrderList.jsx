@@ -6,6 +6,7 @@ import './orderList.css';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/shared/searchBar/SearchBar';
 import Ticket from '../../../components/shared/ticket/Ticket';
+import { BackButton } from '../../../components/shared/BackButton';
 
 function PrivateOrderList() {
   const { orders, isLoading } = useSelector(
@@ -36,6 +37,7 @@ function PrivateOrderList() {
   return (
     <>
       <section className="headings">
+      <BackButton url={'/private/home'} />
         <h1>Liste des commandes</h1>
       </section>
 

@@ -5,6 +5,7 @@ import { getWastes } from '../../../features/waste/wasteSlice'
 import Spinner from '../../../components/shared/spinner/Spinner'
 import Ticket from '../../../components/shared/ticket/Ticket'
 import { Link } from 'react-router-dom'
+import { BackButton } from '../../../components/shared/BackButton'
 
 function PrivateWasteList() {
   const { wastes, isLoading, isError, message } = useSelector((state) => state.waste)
@@ -29,6 +30,7 @@ function PrivateWasteList() {
   return (
     <>
       <section className='headings'>
+      <BackButton url={'/private/home'} />
         <h1>liste des types de déchets</h1>
       </section>
       <div className="ticket-headings">

@@ -1,23 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import collectPointService from './collectPointService'
 
-
 const initialState = {
-    collectPoints: [],
-    collectPoint: {},
-    isError: false,
-    isSuccess: false,
-    isLoading: false,
-    message: ''
+  collectPoints: [],
+  collectPoint: {},
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: '',
 }
 
-
-// Get all collects
 export const getCollectPoints = createAsyncThunk(
   'collectPoints/getAll',
   async (_, thunkAPI) => {
     try {
-      return await  collectPointService.getCollectPoints()
+      return await collectPointService.getCollectPoints()
     } catch (error) {
       const message =
         (error.response &&
@@ -29,6 +26,7 @@ export const getCollectPoints = createAsyncThunk(
     }
   },
 )
+
 export const getCollectPoint = createAsyncThunk(
   'collectPoints/get',
   async (collectPointId, thunkAPI) => {
@@ -46,13 +44,10 @@ export const getCollectPoint = createAsyncThunk(
   },
 )
 
-
-// create new collect
 export const createNewCollect = createAsyncThunk(
   'collectPoints/create',
   async (collectPointId, thunkAPI) => {
     try {
-    
       return await collectPointService.createNewCollect(collectPointId)
     } catch (error) {
       const message =
@@ -63,12 +58,11 @@ export const createNewCollect = createAsyncThunk(
     }
   },
 )
-// create new collect
+
 export const createNewCollectPoint = createAsyncThunk(
   'collectPoints/createNew',
-  async (thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-    
       return await collectPointService.createNewCollectPoint()
     } catch (error) {
       const message =
@@ -80,20 +74,29 @@ export const createNewCollectPoint = createAsyncThunk(
   },
 )
 
-
-
-
-
+export const updateCollectPointQRCode = createAsyncThunk(
+  'collectPoints/updateQRCode',
+  async ({ collectPointId, qrCodeFile }, thunkAPI) => {
+    try {
+      return await collectPointService.uploadQRCode(collectPointId, qrCodeFile)
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.msg) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  },
+)
 
 export const collectPointSlice = createSlice({
   name: 'collectPoint',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-     
       .addCase(getCollectPoints.pending, (state) => {
         state.isLoading = true
       })
@@ -106,9 +109,8 @@ export const collectPointSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.collectPoints = null
+        state.collectPoints = []
       })
-     
       .addCase(getCollectPoint.pending, (state) => {
         state.isLoading = true
       })
@@ -121,41 +123,47 @@ export const collectPointSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.collectPoint = null
+        state.collectPoint = {}
       })
       .addCase(createNewCollect.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true
       })
-      .addCase(createNewCollect.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-
+      .addCase(createNewCollect.fulfilled, (state) => {
+        state.isLoading = false
+        state.isSuccess = true
       })
       .addCase(createNewCollect.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
       })
       .addCase(createNewCollectPoint.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true
       })
-      .addCase(createNewCollectPoint.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-
+      .addCase(createNewCollectPoint.fulfilled, (state) => {
+        state.isLoading = false
+        state.isSuccess = true
       })
       .addCase(createNewCollectPoint.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
       })
-
-  
+      .addCase(updateCollectPointQRCode.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateCollectPointQRCode.fulfilled, (state) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(updateCollectPointQRCode.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 
 export const { reset } = collectPointSlice.actions
+
 export default collectPointSlice.reducer
-
-
-

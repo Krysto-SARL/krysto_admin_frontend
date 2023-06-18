@@ -10,8 +10,6 @@ const getCertificat = async (certificatId) => {
   return response.data
 }
 
-
-
 const certificatService = {
   getCertificats,
   getCertificat,

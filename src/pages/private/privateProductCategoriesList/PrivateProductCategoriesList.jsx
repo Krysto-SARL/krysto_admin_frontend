@@ -10,6 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 import Modal from '../../../components/shared/modal/Modal';
 import Ticket from '../../../components/shared/ticket/Ticket';
+import { BackButton } from '../../../components/shared/BackButton';
 
 
 
@@ -62,6 +63,7 @@ function PrivateProductCategoriesList() {
   return (
     <>
       <section className="headings">
+      <BackButton url={'/private/home'} />
         <h1>Liste des catégories de produits</h1>
         <button onClick={openNewCategoryModal} className="btn btn-sm">
         Créer une nouvelle catégorie
