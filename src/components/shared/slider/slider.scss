@@ -1,0 +1,31 @@
+.img-container {
+    height: 20rem;
+    width: 20rem;
+    margin: auto;
+  
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  
+  .slider {
+    display: flex;
+    margin: 2rem 0;
+  }
+  
+  .btn-slide {
+    height: 2rem;
+    margin: auto;
+    
+  }
+  
+  .slider-image {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .slider-image.active {
+    opacity: 1;
+  }

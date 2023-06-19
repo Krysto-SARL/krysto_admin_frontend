@@ -84,7 +84,7 @@ function PrivateProductCategoriesList() {
             <div>{new Date(productCategory.updatedAt).toLocaleDateString()}</div>
 
             <Link
-              to={`/private/details-produit/${productCategory.id}`}
+              to={`/private/categorie-produit-details/${productCategory.id}`}
               className="btn btn-sm"
             >
               Catégorie détails

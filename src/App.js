@@ -25,6 +25,7 @@ import PrivateWasteDetails from './pages/private/privateWasteDetails/PrivateWast
 import PrivateMessageDetails from './pages/private/privateMessageDetails/PrivateMessageDetails'
 import PrivateCollectPointDetails from './pages/private/privateCollectPointDetails/PrivateCollectPointDetails'
 import PrivateCertificatDetails from './pages/private/privateCertificatDetails/PrivateCertificatDetails'
+import PrivateProductCategoryDetails from './pages/private/privateProductCategoryDetails/PrivateProductCategoryDetails'
 
 function App() {
   return (
@@ -85,6 +86,10 @@ function App() {
               <Route
                 path="/private/message-details/:id"
                 element={<PrivateMessageDetails />}
+              />
+              <Route
+                path="/private/categorie-produit-details/:id"
+                element={<PrivateProductCategoryDetails />}
               />
               <Route
                 path="/private/certificat-details/:id"

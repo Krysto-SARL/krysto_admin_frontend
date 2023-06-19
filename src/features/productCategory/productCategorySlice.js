@@ -32,7 +32,7 @@ export const getProductCategory = createAsyncThunk(
   'productCategory/get',
   async (productCategoryId, thunkAPI) => {
     try {
-      return await productCategoryService.getOrder(productCategoryId)
+      return await productCategoryService.getProductCategory(productCategoryId)
     } catch (error) {
       const message =
         (error.response &&
