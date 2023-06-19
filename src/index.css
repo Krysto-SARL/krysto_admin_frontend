@@ -368,17 +368,6 @@ h3 {
   right: 20px;
 }
 
-.btn-close {
-  background: none;
-  border: none;
-  color: #d54848;
-  position: absolute;
-  top: -1rem;
-  right: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 .btn-close:hover {
   color: #d54848;
   transform: scale(0.98);

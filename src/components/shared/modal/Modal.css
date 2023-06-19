@@ -59,4 +59,28 @@ h3 {
   border-radius: 5px;
   max-width: 60rem;
   min-width: 30rem;
+}
+
+.btn-close {
+  background-color: transparent;
+  background: none;
+  border: none;
+  color: #d54848;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+.btn-close:hover {
+  font-weight: bolder;
+}
+
+.modal-content {
+  padding: 1rem;
+}
+
+/* Modal open class */
+.modal-open {
+  overflow: hidden;
 }/*# sourceMappingURL=Modal.css.map */
