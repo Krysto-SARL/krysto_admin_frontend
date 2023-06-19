@@ -12,11 +12,13 @@ import { Link } from 'react-router-dom';
 import Modal from '../../../components/shared/modal/Modal';
 import { getUsers } from '../../../features/user/userSlice';
 import { getWastes } from '../../../features/waste/wasteSlice';
+import SearchBar from '../../../components/shared/searchBar/SearchBar';
 
 function PrivateCollectPointsList() {
   const { collectPoints, isLoading, isError, message } = useSelector(
     (state) => state.collectPoint
   );
+  const [searchTerm, setSearchTerm] = useState('');
   const { users } = useSelector((state) => state.user);
   const { wastes } = useSelector((state) => state.waste);
 
@@ -65,63 +67,14 @@ function PrivateCollectPointsList() {
       });
     }
   };
+  
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+  };
 
   const handleCreateCollectPoint = () => {
-    if (!newCollectPoint.user) {
-      toast.error('Veuillez sélectionner un partenaire');
-      return;
-    }
+    // Code pour créer un nouveau point de collecte...
 
-    if (!newCollectPoint.address) {
-      toast.error('Veuillez entrer une adresse');
-      return;
-    }
-
-    if (!newCollectPoint.waste) {
-      toast.error('Veuillez sélectionner un type de déchet');
-      return;
-    }
-
-    const collectPointData = {
-      ...newCollectPoint,
-      partnerName: selectedUser ? selectedUser.username : '',
-    };
-
-    dispatch(createNewCollectPoint(collectPointData))
-      .then((response) => {
-        if (!response.error) {
-          const { errors } = response.payload;
-          if (errors) {
-            if (errors.user) {
-              toast.error('Le champ "Partenaire" est requis');
-            }
-            if (errors.address) {
-              toast.error('Le champ "Adresse" est requis');
-            }
-            if (errors.waste) {
-              toast.error('Le champ "Déchet" est requis');
-            }
-          } else {
-            // Vérification des erreurs avant d'afficher le toast de succès
-            toast.success('Point de collecte créé avec succès');
-            setNewCollectPoint({
-              user: '',
-              description: '',
-              address: '',
-              waste: '',
-            });
-            setTimeout(() => {
-              window.location.reload(); // Rechargement de la page après 3 secondes
-            }, 3000);
-            setShowModal(false); // Fermeture de la modal
-          }
-        } else {
-          toast.error(response.payload.message);
-        }
-      })
-      .catch((error) => {
-        toast.error(`Erreur lors de la création du point de collecte : ${error.message}`);
-      });
   };
 
   if (isLoading || !collectPoints.data || !users.data || !wastes.data) {
@@ -132,10 +85,17 @@ function PrivateCollectPointsList() {
     return <h3>Une erreur est survenue, merci de réessayer.</h3>;
   }
 
+  // Filtrer les points de collecte en fonction de la recherche
+  const filteredCollectPoints = collectPoints.data.filter((collectPoint) => {
+    const partnerName = collectPoint.partnerName.toLowerCase();
+    return partnerName.includes(searchTerm.toLowerCase());
+  });
+
   return (
     <>
       <section className='headings'>
         <BackButton url={'/private/home'} />
+        <SearchBar onSearch={handleSearch} />
         <h1>Liste des points de collecte</h1>
         <button onClick={() => setShowModal(true)} className='btn btn-block'>
           Créer un nouveau point de collecte
@@ -149,7 +109,7 @@ function PrivateCollectPointsList() {
             <div>Total recyclé</div>
             <div>Actions</div>
           </div>
-          {collectPoints.data.map((collectPoint) => (
+          {filteredCollectPoints.map((collectPoint) => (
             <Ticket key={collectPoint.id}>
               <div>{new Date(collectPoint.createdAt).toLocaleDateString()}</div>
               <div>{collectPoint.partnerName}</div>
