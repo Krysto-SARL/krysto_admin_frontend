@@ -175,21 +175,9 @@ export const userSlice = createSlice({
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        // // Remove the deleted user from the users array
-        // state.users = state.users.filter((user) => user.id !== action.payload)
-        // // Recharger la page
-        // window.location.reload()
-        // Vérifier si state.users est un tableau avant de filtrer
         if (Array.isArray(state.users)) {
           state.users = state.users.filter((user) => user.id !== action.payload)
         }
-        // // Recharger la page
-        // toast.error('Utilisateur en cours de suppresion')
-
-        // // Afficher le toast après 3 secondes
-        // setTimeout(() => {
-        //   window.location.reload()
-        // }, 2000)
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.isLoading = false

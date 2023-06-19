@@ -10,8 +10,6 @@ function Modal({ titleModal, btnTxt, isOpen, onClose, children }) {
 
   return (
     <>
-
-
       {isOpen && (
         <div className="overlay" onClick={handleOverlayClick}>
           <div className="modal">

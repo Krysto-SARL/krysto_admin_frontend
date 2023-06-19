@@ -13,8 +13,9 @@ const createNewCollect = async (collectPointId) => {
   const response = await axios.post(`${API_URL}/${collectPointId}/collects`)
   return response.data
 }
-const createNewCollectPoint = async () => {
-  const response = await axios.post(`${API_URL}`)
+const createNewCollectPoint = async (collectPoint) => {
+  const response = await axios.post(`${API_URL}`, collectPoint)
+
   return response.data
 }
 

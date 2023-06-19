@@ -46,9 +46,9 @@ export const getCollectPoint = createAsyncThunk(
 
 export const createNewCollect = createAsyncThunk(
   'collectPoints/create',
-  async (collectPointId, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      return await collectPointService.createNewCollect(collectPointId)
+      return await collectPointService.createNewCollect()
     } catch (error) {
       const message =
         (error.response && error.response.data && error.response.data.msg) ||
@@ -58,12 +58,11 @@ export const createNewCollect = createAsyncThunk(
     }
   },
 )
-
 export const createNewCollectPoint = createAsyncThunk(
   'collectPoints/createNew',
-  async (_, thunkAPI) => {
+  async (newCollectPoint, thunkAPI) => {
     try {
-      return await collectPointService.createNewCollectPoint()
+      return await collectPointService.createNewCollectPoint(newCollectPoint)
     } catch (error) {
       const message =
         (error.response && error.response.data && error.response.data.msg) ||
@@ -140,9 +139,10 @@ export const collectPointSlice = createSlice({
       .addCase(createNewCollectPoint.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createNewCollectPoint.fulfilled, (state) => {
+      .addCase(createNewCollectPoint.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
+        state.newCollectPoint = action.payload
       })
       .addCase(createNewCollectPoint.rejected, (state, action) => {
         state.isLoading = false
