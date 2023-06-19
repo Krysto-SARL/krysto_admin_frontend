@@ -42,7 +42,7 @@ function PrivateMessagesList() {
             Messages archivés :{' '}
             <span className="warning">
               {messages.data.filter(
-                (message) => message.status === 'archived',
+                (message) => message.status === 'Archived',
               ).length}{' '}
             </span>{' '}
           </div>
@@ -84,6 +84,7 @@ function PrivateMessagesList() {
               </Ticket>
             ))}
         </div>
+        <Link className='btn btn-danger' to={'/private/message-archivees'}>Voir les messages archivées</Link>
       </section>
     </>
   );

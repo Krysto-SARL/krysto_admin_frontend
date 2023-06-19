@@ -7,6 +7,7 @@ import Ticket from '../../../components/shared/ticket/Ticket';
 import { Link } from 'react-router-dom';
 import { BackButton } from '../../../components/shared/BackButton';
 import Modal from '../../../components/shared/modal/Modal';
+import SearchBar from '../../../components/shared/searchBar/SearchBar';
 
 const wasteCategoryOptions = [
   'Aluminium',
@@ -42,6 +43,7 @@ function PrivateWasteList() {
     plasticType: '',
     détails: '',
   });
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     if (isError) {
@@ -60,6 +62,9 @@ function PrivateWasteList() {
       ...prevData,
       [name]: value,
     }));
+  };
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
   };
 
   const handleCreateWaste = () => {
@@ -80,6 +85,7 @@ function PrivateWasteList() {
     <>
       <section className='headings'>
         <BackButton url={'/private/home'} />
+        <SearchBar onSearch={handleSearch} />
         <h1>liste des types de déchets</h1>
         <button onClick={() => setShowModal(true)} className='btn btn-block'>
           Créer un nouveau déchet
