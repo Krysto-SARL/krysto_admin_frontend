@@ -38,7 +38,7 @@ function PrivateUserDetails() {
     <div className="ticket-page">
       <header className="ticket-header">
         <BackButton url="/private/gestion-utilisateurs" />
-        {user.data.role === 'partner' || user.data.role === 'recyc' ? (
+        {user.data.role === 'partner' || user.data.role === 'recycleur' ? (
           <>
             <h2>
               Raison sociale : {user.data.compagny.compagnyName} <span>{user.data.email}</span>

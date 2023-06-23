@@ -27,6 +27,8 @@ import PrivateCollectPointDetails from './pages/private/privateCollectPointDetai
 import PrivateCertificatDetails from './pages/private/privateCertificatDetails/PrivateCertificatDetails'
 import PrivateProductCategoryDetails from './pages/private/privateProductCategoryDetails/PrivateProductCategoryDetails'
 import PrivateArchivedMessagesList from './pages/private/privateArchivedMessagesList/PrivateArchivedMessagesList'
+import PrivateProductDetail from './pages/private/privateProductDetail/PrivateProductDetail'
+import PrivateServiceDetail from './pages/private/privateServiceDetails/PrivateServiceDetails'
 
 function App() {
   return (
@@ -65,9 +67,18 @@ function App() {
                 element={<PrivateProductList />}
               />
               <Route
+                path="/private/details-produit/:id"
+                element={<PrivateProductDetail />}
+              />
+              <Route
+                path="/private/details-services/:id"
+                element={<PrivateServiceDetail />}
+              />
+              <Route
                 path="/private/liste-services"
                 element={<PrivateServicesList />}
               />
+           
               <Route
                 path="/private/liste-messages"
                 element={<PrivateMessagesList />}

@@ -9,7 +9,7 @@ const getProducts = async () => {
 }
 
 const getProduct = async (productId) => {
-  const response = await axios.get(`${API_URL}/${productId}/${productURL}`)
+  const response = await axios.get(`${API_URL}${productURL}/${productId}`)
   return response.data
 }
 

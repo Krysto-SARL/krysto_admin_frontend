@@ -9,6 +9,7 @@ import certificatReducer from '../features/certificat/certificatSlice'
 import orderReducer from '../features/order/orderSlice'
 import productCategoryReducer from '../features/productCategory/productCategorySlice'
 import productReducer from '../features/product/productSlice'
+import serviceReducer from '../features/initiation/inititationSlice'
 
 export const store = configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export const store = configureStore({
     productCategory: productCategoryReducer,
     product: productReducer,
     order: orderReducer,
+    service: serviceReducer
   },
 })

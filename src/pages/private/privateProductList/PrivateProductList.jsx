@@ -74,6 +74,8 @@ function PrivateProductList() {
     return <Spinner />
   }
 
+  
+
   return (
     <>
       <section className="headings">
