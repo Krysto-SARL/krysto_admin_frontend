@@ -24,9 +24,13 @@ function PrivateHome() {
       <Link className="btn" to={'/private/liste-services'}>
         services
       </Link>
-      <Link className="btn" to={'/private/order-liste'}>
-        Commandes
+      <Link className="btn" to={'/private/liste-categories-produit-recyclable'}>
+       Categories Produit recyclables
       </Link>
+      <Link className="btn" to={'/private/liste-produits-recyclable'}>
+        Produits recyclables
+      </Link>
+ 
       <Link className="btn" to={'/private/liste-points-de-collectes'}>
         Point de collecte
       </Link>

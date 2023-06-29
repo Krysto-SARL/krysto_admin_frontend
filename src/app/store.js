@@ -22,7 +22,8 @@ export const store = configureStore({
     certificat: certificatReducer,
     productCategory: productCategoryReducer,
     product: productReducer,
+
     order: orderReducer,
-    service: serviceReducer
+    service: serviceReducer,
   },
 })

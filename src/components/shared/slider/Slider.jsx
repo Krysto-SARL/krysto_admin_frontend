@@ -24,7 +24,7 @@ const Slider = ({ images }) => {
       {images.map((image, index) => (
           <img
           key={index}
-          src={`http://localhost:8080/uploads/photo__${image}`}
+          src={`${process.env.REACT_APP_BASE_API_URL_IMAGES}${image}`}
           alt={`Slider ${index}`}
           style={{ display: currentIndex === index ? 'block' : 'none' }}
           />

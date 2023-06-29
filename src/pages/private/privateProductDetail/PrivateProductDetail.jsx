@@ -32,7 +32,7 @@ console.log(product.data);
     <section className='headings'>
         <h1>{product.data.designation}</h1>
        <div className="container_img">
-        <img src={`http://localhost:8080/uploads/${product.data.photo}`} alt="" />
+        <img src={`${process.env.REACT_APP_BASE_API_URL_IMAGE}${product.data.photo}`} alt="" />
        </div>
     </section>
   )

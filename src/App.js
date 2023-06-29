@@ -12,8 +12,7 @@ import Documentation from './pages/Documentation'
 import PrivateHome from './pages/private/privateHome/PrivateHome'
 import PrivateUsers from './pages/private/PrivateUserList/PrivateUsers'
 import PrivateUserDetails from './pages/private/privateUserDetails/PrivateUserDetails'
-import PrivateOrderList from './pages/private/privateOrderList/PrivateOrderList'
-import PrivateOrderDetails from './pages/private/privateOrderDetails/PrivateOrderDetails'
+
 import PrivateProductList from './pages/private/privateProductList/PrivateProductList'
 import PrivateMessagesList from './pages/private/privateMessagesList/PrivateMessagesList'
 import PrivateProductCategoriesList from './pages/private/privateProductCategoriesList/PrivateProductCategoriesList'
@@ -29,6 +28,8 @@ import PrivateProductCategoryDetails from './pages/private/privateProductCategor
 import PrivateArchivedMessagesList from './pages/private/privateArchivedMessagesList/PrivateArchivedMessagesList'
 import PrivateProductDetail from './pages/private/privateProductDetail/PrivateProductDetail'
 import PrivateServiceDetail from './pages/private/privateServiceDetails/PrivateServiceDetails'
+import PrivateRecyclableProductsList from './pages/private/privateRecyclableProductsList/PrivateRecyclableProductsList'
+import PrivateRecyclableProductCategoriesList from './pages/private/privateRecyclableProductCategoriesList/PrivateRecyclableProductCategoriesList'
 
 function App() {
   return (
@@ -50,14 +51,7 @@ function App() {
                 path="/private/details-utilisateur/:id"
                 element={<PrivateUserDetails />}
               />
-              <Route
-                path="/private/order-liste"
-                element={<PrivateOrderList />}
-              />
-              <Route
-                path="/private/details-commande/:id"
-                element={<PrivateOrderDetails />}
-              />
+
               <Route
                 path="/private/liste-categorie-produits"
                 element={<PrivateProductCategoriesList />}
@@ -65,6 +59,14 @@ function App() {
               <Route
                 path="/private/liste-produits"
                 element={<PrivateProductList />}
+              />
+              <Route
+                path="/private/liste-produits-recyclable"
+                element={<PrivateRecyclableProductsList />}
+              />
+              <Route
+                path="/private/liste-categories-produit-recyclable"
+                element={<PrivateRecyclableProductCategoriesList />}
               />
               <Route
                 path="/private/details-produit/:id"
@@ -78,7 +80,7 @@ function App() {
                 path="/private/liste-services"
                 element={<PrivateServicesList />}
               />
-           
+
               <Route
                 path="/private/liste-messages"
                 element={<PrivateMessagesList />}
