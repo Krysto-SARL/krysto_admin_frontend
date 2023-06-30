@@ -30,6 +30,10 @@ import PrivateProductDetail from './pages/private/privateProductDetail/PrivatePr
 import PrivateServiceDetail from './pages/private/privateServiceDetails/PrivateServiceDetails'
 import PrivateRecyclableProductsList from './pages/private/privateRecyclableProductsList/PrivateRecyclableProductsList'
 import PrivateRecyclableProductCategoriesList from './pages/private/privateRecyclableProductCategoriesList/PrivateRecyclableProductCategoriesList'
+import PrivateVoluntaryDropPointsList from './pages/private/privateVoluntaryDropPointsList/PrivateVoluntaryDropPointsList'
+import PrivateGarbageTypeList from './pages/private/privateGarbageTypeList/PrivateGarbageTypeList'
+import PrivatePlasticTypesList from './pages/privatePlasticTypesList/PrivatePlasticTypesList'
+import PrivateNutriScoreCalculator from './pages/private/privateNutriScoreCalculator/PrivateNutriScoreCalculator'
 
 function App() {
   return (
@@ -67,6 +71,14 @@ function App() {
               <Route
                 path="/private/liste-categories-produit-recyclable"
                 element={<PrivateRecyclableProductCategoriesList />}
+              />
+              <Route
+                path="/private/liste-types-ordures"
+                element={<PrivateGarbageTypeList />}
+              />
+              <Route
+                path="/private/liste-types-plastique"
+                element={<PrivatePlasticTypesList />}
               />
               <Route
                 path="/private/details-produit/:id"
@@ -120,6 +132,14 @@ function App() {
               <Route
                 path="/private/liste-certificats"
                 element={<PrivateCertificatsList />}
+              />
+              <Route
+                path="/private/liste-points-apport-volontaires"
+                element={<PrivateVoluntaryDropPointsList />}
+              />
+              <Route
+                path="/private/calculateur-nutri-score"
+                element={<PrivateNutriScoreCalculator />}
               />
             </Route>
           </Routes>

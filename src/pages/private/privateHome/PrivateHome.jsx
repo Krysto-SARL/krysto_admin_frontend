@@ -21,8 +21,8 @@ function PrivateHome() {
       <Link className="btn" to={'/private/liste-produits'}>
         Produits
       </Link>
-      <Link className="btn" to={'/private/liste-services'}>
-        services
+      <Link className="btn" to={'/private/liste-types-plastique'}>
+        liste types de plastique
       </Link>
       <Link className="btn" to={'/private/liste-categories-produit-recyclable'}>
        Categories Produit recyclables
@@ -30,7 +30,12 @@ function PrivateHome() {
       <Link className="btn" to={'/private/liste-produits-recyclable'}>
         Produits recyclables
       </Link>
- 
+      <Link className="btn" to={'/private/liste-points-apport-volontaires'}>
+       Points d'apport volontaires
+      </Link>
+      <Link className="btn" to={'/private/liste-types-ordures'}>
+      Types d'ordures
+      </Link>
       <Link className="btn" to={'/private/liste-points-de-collectes'}>
         Point de collecte
       </Link>
@@ -39,6 +44,9 @@ function PrivateHome() {
       </Link>
       <Link className="btn" to={'/private/liste-certificats'}>
         Certificats
+      </Link>
+      <Link className="btn" to={'/private/calculateur-nutri-score'}>
+        Calculateur nutri score
       </Link>
       <Link className="btn btn-reverse" to={'/documentation'}>
         Documentation
