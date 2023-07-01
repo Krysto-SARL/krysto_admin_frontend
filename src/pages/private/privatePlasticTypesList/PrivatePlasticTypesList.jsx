@@ -39,7 +39,7 @@ function PrivatePlasticTypesList() {
           <p>Actions</p>
         </div>
         {plasticTypes.data.map((plasticType) => (
-            <Ticket key={plasticType.id}>
+            <Ticket key={plasticType._id}>
 
         
             <div>{plasticType.sigleFr}</div>
@@ -47,10 +47,10 @@ function PrivatePlasticTypesList() {
             <div>{plasticType.scientificNameFr}</div>
            
             <Link
-              to={`/private/details-services/${plasticType.id}`}
+              to={`/private/details-type-de-plastique/${plasticType._id}`}
               className="btn btn-sm"
               >
-              Détail du service
+              Détail du type de plastique
             </Link>
                 </Ticket>
        

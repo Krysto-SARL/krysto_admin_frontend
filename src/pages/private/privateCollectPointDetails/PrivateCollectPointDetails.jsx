@@ -128,7 +128,7 @@ function PrivateCollectPointDetails() {
         <MapContainer
           style={{ height: "100%", width: "100%" }}
           center={[collectPoint.data.location.coordinates[1],collectPoint.data.location.coordinates[0]]}
-          zoom={17}
+          zoom={12}
           scrollWheelZoom={false}
         >
           <TileLayer

@@ -44,7 +44,7 @@ function PrivateRecyclableProductCategoriesList() {
           <div>{recyclableProductCategory.recyclableProducts.length}</div>
          
           <Link
-            to={`/private/ordure-details/${recyclableProductCategory.id}`}
+            to={`/private/produit-recyclable-categorie-details/${recyclableProductCategory.id}`}
             className="btn btn-sm"
             >
             Détail de la catégorie

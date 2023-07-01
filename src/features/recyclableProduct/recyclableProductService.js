@@ -38,10 +38,11 @@ const deleteRecyclableProduct = async (recyclableProductId) => {
   return response.data
 }
 
-const addRecyclableProductPhoto = async (recyclableProductId, photoData) => {
+const addRecyclableProductPhoto = async (recyclableProductId, photo) => {
+  console.log(photo)
   const response = await axios.put(
     `${API_URL}${recyclableProductURL}/${recyclableProductId}/photo`,
-    photoData,
+    photo,
   )
   return response.data
 }

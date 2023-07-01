@@ -106,11 +106,11 @@ export const deleteRecyclableProduct = createAsyncThunk(
 
 export const addRecyclableProductPhoto = createAsyncThunk(
   'recyclableProduct/addRecyclableProductPhoto',
-  async ({ recyclableProductId, photoData }, thunkAPI) => {
+  async ({ recyclableProductId, photo }, thunkAPI) => {
     try {
       return await recyclableProductService.addRecyclableProductPhoto(
         recyclableProductId,
-        photoData,
+        photo,
       )
     } catch (error) {
       const message =

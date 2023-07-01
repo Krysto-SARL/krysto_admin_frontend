@@ -39,15 +39,13 @@ function PrivateVoluntaryDropPointsList() {
       </div>
       {voluntaryDropPoints.data.map((voluntaryDropPoint) => (
         <Ticket key={voluntaryDropPoint.id}>
-          {/* <div>{recyclableProduct.recyclableProductCategory}</div>
-          <div>{recyclableProduct.marque}</div>
-          <div>{recyclableProduct.designation}</div> */}
+ 
           <div>{voluntaryDropPoint.organisme}</div>
           <div>{voluntaryDropPoint.email}</div>
           <div>{voluntaryDropPoint.telephone}</div>
 
           <Link
-            to={`/private/point-apport-volontaire-details/${voluntaryDropPoint.id}`}
+            to={`/private/points-apport-volontaires-details/${voluntaryDropPoint.id}`}
             className="btn btn-sm"
           >
             Détail du PAV

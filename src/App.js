@@ -34,6 +34,10 @@ import PrivateVoluntaryDropPointsList from './pages/private/privateVoluntaryDrop
 import PrivateGarbageTypeList from './pages/private/privateGarbageTypeList/PrivateGarbageTypeList'
 import PrivatePlasticTypesList from './pages/privatePlasticTypesList/PrivatePlasticTypesList'
 import PrivateNutriScoreCalculator from './pages/private/privateNutriScoreCalculator/PrivateNutriScoreCalculator'
+import PrivatePlasticTypeDetails from './pages/private/privatePlasticTypeDetails/PrivatePlasticTypeDetails'
+import PrivateRecyclableProductCategoryDetails from './pages/privateRecyclableProductCategoryDetails/PrivateRecyclableProductCategoryDetails'
+import PrivateVoluntaryDropPointDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
+import PrivateRecyclableProductDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
 
 function App() {
   return (
@@ -73,12 +77,24 @@ function App() {
                 element={<PrivateRecyclableProductCategoriesList />}
               />
               <Route
+                path="/private/produit-recyclable-categorie-details/:id"
+                element={<PrivateRecyclableProductCategoryDetails />}
+              />
+              <Route
+                path="/private/produit-recyclable-details/:id"
+                element={<PrivateRecyclableProductDetails />}
+              />
+              <Route
                 path="/private/liste-types-ordures"
                 element={<PrivateGarbageTypeList />}
               />
               <Route
                 path="/private/liste-types-plastique"
                 element={<PrivatePlasticTypesList />}
+              />
+              <Route
+                path="/private/details-type-de-plastique/:id"
+                element={<PrivatePlasticTypeDetails />}
               />
               <Route
                 path="/private/details-produit/:id"
@@ -136,6 +152,10 @@ function App() {
               <Route
                 path="/private/liste-points-apport-volontaires"
                 element={<PrivateVoluntaryDropPointsList />}
+              />
+              <Route
+                path="/private/points-apport-volontaires-details/:id"
+                element={<PrivateVoluntaryDropPointDetails />}
               />
               <Route
                 path="/private/calculateur-nutri-score"

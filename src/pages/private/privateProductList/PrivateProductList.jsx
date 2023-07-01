@@ -204,12 +204,12 @@ function PrivateProductList() {
               ))}
             </select>
           </div>
-        </form>
         <div className="form-group">
           <button onClick={handleNewProductSubmit} className="btn btn-block">
             Créer
           </button>
         </div>
+        </form>
       </Modal>
     </>
   )
