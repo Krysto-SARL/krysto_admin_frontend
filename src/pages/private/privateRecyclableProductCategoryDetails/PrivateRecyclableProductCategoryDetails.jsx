@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { getRecyclableProductCategory } from '../../features/recyclableProductCategory/recyclableProductCategorySlice'
-import Spinner from '../../components/shared/spinner/Spinner'
+import { getRecyclableProductCategory } from '../../../features/recyclableProductCategory/recyclableProductCategorySlice'
+import Spinner from '../../../components/shared/spinner/Spinner'
 
 function PrivateRecyclableProductCategoryDetails() {
 

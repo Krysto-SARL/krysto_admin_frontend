@@ -32,10 +32,10 @@ import PrivateRecyclableProductsList from './pages/private/privateRecyclableProd
 import PrivateRecyclableProductCategoriesList from './pages/private/privateRecyclableProductCategoriesList/PrivateRecyclableProductCategoriesList'
 import PrivateVoluntaryDropPointsList from './pages/private/privateVoluntaryDropPointsList/PrivateVoluntaryDropPointsList'
 import PrivateGarbageTypeList from './pages/private/privateGarbageTypeList/PrivateGarbageTypeList'
-import PrivatePlasticTypesList from './pages/privatePlasticTypesList/PrivatePlasticTypesList'
+import PrivatePlasticTypesList from './pages/private/privatePlasticTypesList/PrivatePlasticTypesList'
 import PrivateNutriScoreCalculator from './pages/private/privateNutriScoreCalculator/PrivateNutriScoreCalculator'
 import PrivatePlasticTypeDetails from './pages/private/privatePlasticTypeDetails/PrivatePlasticTypeDetails'
-import PrivateRecyclableProductCategoryDetails from './pages/privateRecyclableProductCategoryDetails/PrivateRecyclableProductCategoryDetails'
+import PrivateRecyclableProductCategoryDetails from './pages/private/privateRecyclableProductCategoryDetails/PrivateRecyclableProductCategoryDetails'
 import PrivateVoluntaryDropPointDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
 import PrivateRecyclableProductDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
 

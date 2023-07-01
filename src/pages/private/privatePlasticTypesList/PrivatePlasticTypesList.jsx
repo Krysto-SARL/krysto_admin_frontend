@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPlasticTypes } from '../../features/plasticType/plasticTypeSlice'
-import Spinner from '../../components/shared/spinner/Spinner'
-import { BackButton } from '../../components/shared/BackButton'
-import Ticket from '../../components/shared/ticket/Ticket'
+import { getPlasticTypes } from '../../../features/plasticType/plasticTypeSlice'
+import Spinner from '../../../components/shared/spinner/Spinner'
+import { BackButton } from '../../../components/shared/BackButton'
+import Ticket from '../../../components/shared/ticket/Ticket'
 import { Link } from 'react-router-dom'
 
 function PrivatePlasticTypesList() {
