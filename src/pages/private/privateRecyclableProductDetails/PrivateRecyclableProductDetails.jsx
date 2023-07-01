@@ -6,9 +6,9 @@ import {
   getRecyclableProduct,
   deleteRecyclableProduct,
   addRecyclableProductPhoto
-} from '../../features/recyclableProduct/recyclableProductSlice';
-import Spinner from '../../components/shared/spinner/Spinner';
-import Modal from '../../components/shared/modal/Modal';
+} from '../../../features/recyclableProduct/recyclableProductSlice';
+import Spinner from '../../../components/shared/spinner/Spinner';
+import Modal from '../../../components/shared/modal/Modal';
 
 function PrivateRecyclableProductDetails() {
   const { recyclableProduct, isLoading, isError, message } = useSelector(
@@ -41,8 +41,9 @@ function PrivateRecyclableProductDetails() {
     formData.append('photo', photoFile);
     dispatch(addRecyclableProductPhoto({ recyclableProductId: recyclableProduct.data.id, photo: formData }))
       .then(() => {
-        toast.success('Photo ajoutée avec succès.');
         setIsNewProductModalOpen(false);
+        window.location.reload()
+       
       })
       .catch((error) => {
         toast.error(`Une erreur s'est produite, merci de réessayer.`);
@@ -66,6 +67,7 @@ function PrivateRecyclableProductDetails() {
         toast.error("Une erreur s'est produite lors de la suppression du produit recyclable.");
       });
   };
+  console.log(recyclableProduct.data);
 
   if (isLoading || !recyclableProduct.data) {
     return <Spinner />;
@@ -123,6 +125,11 @@ function PrivateRecyclableProductDetails() {
      <div className="title-container-recyclable-product">
       <h3 className="category-item">{recyclableProduct.data.recyclableProductCategory.name}</h3>
       <h1>{recyclableProduct.data.designation}</h1>
+      <p>{recyclableProduct.data.remarque}</p>
+      {recyclableProduct.data.nutriScore && (
+  <p> Nutriscore : {recyclableProduct.data.nutriScore}</p>
+)}
+      <p> Contient de l'huile de palme : {recyclableProduct.data.containsPalmOil ? 'Oui' : 'Non'}</p>
      </div>
       <button onClick={handleDelete} className="btn btn-block btn-danger">
         Supprimer ce produit recyclable

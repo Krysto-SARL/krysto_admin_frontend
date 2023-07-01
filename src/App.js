@@ -37,7 +37,7 @@ import PrivateNutriScoreCalculator from './pages/private/privateNutriScoreCalcul
 import PrivatePlasticTypeDetails from './pages/private/privatePlasticTypeDetails/PrivatePlasticTypeDetails'
 import PrivateRecyclableProductCategoryDetails from './pages/private/privateRecyclableProductCategoryDetails/PrivateRecyclableProductCategoryDetails'
 import PrivateVoluntaryDropPointDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
-import PrivateRecyclableProductDetails from './pages/private/privateVoluntaryDropPointDetails/PrivateVoluntaryDropPointDetails'
+import PrivateRecyclableProductDetails from './pages/private/privateRecyclableProductDetails/PrivateRecyclableProductDetails.jsx'
 
 function App() {
   return (
