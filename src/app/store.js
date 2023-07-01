@@ -11,6 +11,10 @@ import orderReducer from '../features/order/orderSlice'
 import productCategoryReducer from '../features/productCategory/productCategorySlice'
 import productReducer from '../features/product/productSlice'
 import serviceReducer from '../features/initiation/inititationSlice'
+import recyclableProductCategoryReducer from '../features/recyclableProductCategory/recyclableProductCategorySlice'
+import recyclableProductReducer from '../features/recyclableProduct/recyclableProductSlice'
+import voluntaryDropPointReducer from '../features/voluntaryDropPoint/voluntaryDropPointSlice'
+import garbageTypeReducer from '../features/garbageType/garbageTypeSlice'
 
 export const store = configureStore({
   reducer: {
@@ -26,5 +30,9 @@ export const store = configureStore({
     order: orderReducer,
     service: serviceReducer,
     plasticType: plasticTypeReducer,
+    recyclableProductCategory: recyclableProductCategoryReducer,
+    recyclableProduct: recyclableProductReducer,
+    voluntaryDropPoint: voluntaryDropPointReducer,
+    garbageType: garbageTypeReducer,
   },
 })

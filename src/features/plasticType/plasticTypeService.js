@@ -19,11 +19,25 @@ const createPlasticType = async (plasticTypeData) => {
   )
   return response.data
 }
+const updatePlasticType = async (plasticTypeId, updatedData) => {
+  const response = await axios.put(`${API_URL}/${plasticTypeId}`, updatedData)
+  return response.data
+}
+
+const addPlasticTypeIcone = async (plasticTypeId, iconeData) => {
+  const response = await axios.put(
+    `${API_URL}/${plasticTypeId}/icone`,
+    iconeData,
+  )
+  return response.data
+}
 
 const plasticTypeService = {
   getPlasticType,
   getPlasticTypes,
   createPlasticType,
+  updatePlasticType,
+  addPlasticTypeIcone,
 }
 
 export default plasticTypeService
