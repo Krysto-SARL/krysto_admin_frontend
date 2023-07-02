@@ -1,87 +1,91 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import {
   getRecyclableProduct,
   deleteRecyclableProduct,
-  addRecyclableProductPhoto
-} from '../../../features/recyclableProduct/recyclableProductSlice';
-import Spinner from '../../../components/shared/spinner/Spinner';
-import Modal from '../../../components/shared/modal/Modal';
+  addRecyclableProductPhoto,
+} from '../../../features/recyclableProduct/recyclableProductSlice'
+import Spinner from '../../../components/shared/spinner/Spinner'
+import Modal from '../../../components/shared/modal/Modal'
 
 function PrivateRecyclableProductDetails() {
   const { recyclableProduct, isLoading, isError, message } = useSelector(
-    (state) => state.recyclableProduct
-  );
-  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false);
-  const [photoFile, setPhotoFile] = useState(null);
-  const [previewImage, setPreviewImage] = useState(null);
-  const params = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+    (state) => state.recyclableProduct,
+  )
+  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
+  const [photoFile, setPhotoFile] = useState(null)
+  const [previewImage, setPreviewImage] = useState(null)
+  const params = useParams()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const openNewProductModal = () => {
-    setIsNewProductModalOpen(true);
-  };
+    setIsNewProductModalOpen(true)
+  }
 
   const closeNewProductModal = () => {
-    setIsNewProductModalOpen(false);
-  };
+    setIsNewProductModalOpen(false)
+  }
 
   const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    setPhotoFile(file);
-    setPreviewImage(URL.createObjectURL(file));
-  };
+    const file = e.target.files[0]
+    setPhotoFile(file)
+    setPreviewImage(URL.createObjectURL(file))
+  }
 
   const handlePhotoSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('photo', photoFile);
-    dispatch(addRecyclableProductPhoto({ recyclableProductId: recyclableProduct.data.id, photo: formData }))
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('photo', photoFile)
+    dispatch(
+      addRecyclableProductPhoto({
+        recyclableProductId: recyclableProduct.data.id,
+        photo: formData,
+      }),
+    )
       .then(() => {
-        setIsNewProductModalOpen(false);
+        setIsNewProductModalOpen(false)
         window.location.reload()
-       
       })
       .catch((error) => {
-        toast.error(`Une erreur s'est produite, merci de réessayer.`);
-      });
-  };
+        toast.error(`Une erreur s'est produite, merci de réessayer.`)
+      })
+  }
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error(message)
     }
-    dispatch(getRecyclableProduct(params.id));
-  }, [dispatch, isError, message, params.id]);
+    dispatch(getRecyclableProduct(params.id))
+  }, [dispatch, isError, message, params.id])
 
   const handleDelete = () => {
     dispatch(deleteRecyclableProduct(params.id))
       .then(() => {
-        toast.success('Le produit recyclable a été supprimé avec succès.');
-        navigate('/private/liste-produits-recyclable');
+        toast.success('Le produit recyclable a été supprimé avec succès.')
+        navigate('/private/liste-produits-recyclable')
       })
       .catch(() => {
-        toast.error("Une erreur s'est produite lors de la suppression du produit recyclable.");
-      });
-  };
-  console.log(recyclableProduct.data);
+        toast.error(
+          "Une erreur s'est produite lors de la suppression du produit recyclable.",
+        )
+      })
+  }
+  console.log(recyclableProduct.data)
 
   if (isLoading || !recyclableProduct.data) {
-    return <Spinner />;
+    return <Spinner />
   }
 
   if (isError) {
-    return <h3>Une erreur est survenue, merci de réessayer.</h3>;
+    return <h3>Une erreur est survenue, merci de réessayer.</h3>
   }
 
   return (
     <>
-      <section className='header-recyclable-product'> 
-   
-
+      <section className="header-recyclable-product">
         <Modal
           titleModal="Ajouter ou changer votre photo"
           isOpen={isNewProductModalOpen}
@@ -112,9 +116,9 @@ function PrivateRecyclableProductDetails() {
         </Modal>
 
         <div className="recyclable-product-img-container">
-        <button onClick={openNewProductModal} className="btn">
-          Ajouter une photo
-        </button>
+          <button onClick={openNewProductModal} className="btn">
+            Ajouter une photo
+          </button>
           <img
             className="profil-logo"
             src={`${process.env.REACT_APP_BASE_API_URL_IMAGE}${recyclableProduct.data.photo}`}
@@ -122,20 +126,38 @@ function PrivateRecyclableProductDetails() {
           />
         </div>
       </section>
-     <div className="title-container-recyclable-product">
-      <h3 className="category-item">{recyclableProduct.data.recyclableProductCategory.name}</h3>
-      <h1>{recyclableProduct.data.designation}</h1>
-      <p>{recyclableProduct.data.remarque}</p>
-      {recyclableProduct.data.nutriScore && (
-  <p> Nutriscore : {recyclableProduct.data.nutriScore}</p>
-)}
-      <p> Contient de l'huile de palme : {recyclableProduct.data.containsPalmOil ? 'Oui' : 'Non'}</p>
-     </div>
+      <div className="title-container-recyclable-product">
+        <h3 className="category-item">
+          {recyclableProduct.data.recyclableProductCategory.name}
+        </h3>
+        <h1>{recyclableProduct.data.designation}</h1>
+        <p>{recyclableProduct.data.remarque}</p>
+        <div>
+          
+            <img
+              className="profil-logo"
+              src={`${process.env.REACT_APP_BASE_API_URL_IMAGE}${recyclableProduct.data.ecoScore.photos}`}
+              alt=""
+            />
+          
+            <img
+              className="profil-logo"
+              src={`${process.env.REACT_APP_BASE_API_URL_IMAGE}${recyclableProduct.data.nutriScore.photos}`}
+              alt=""
+            />
+         
+        </div>
+        <p>
+          {' '}
+          Contient de l'huile de palme :{' '}
+          {recyclableProduct.data.containsPalmOil ? 'Oui' : 'Non'}
+        </p>
+      </div>
       <button onClick={handleDelete} className="btn btn-block btn-danger">
         Supprimer ce produit recyclable
       </button>
     </>
-  );
+  )
 }
 
-export default PrivateRecyclableProductDetails;
+export default PrivateRecyclableProductDetails

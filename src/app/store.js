@@ -7,7 +7,6 @@ import collectPointReducer from '../features/collectPoint/collectPointSlice'
 import wasteReducer from '../features/waste/wasteSlice'
 import plasticTypeReducer from '../features/plasticType/plasticTypeSlice'
 import certificatReducer from '../features/certificat/certificatSlice'
-import orderReducer from '../features/order/orderSlice'
 import productCategoryReducer from '../features/productCategory/productCategorySlice'
 import productReducer from '../features/product/productSlice'
 import serviceReducer from '../features/initiation/inititationSlice'
@@ -15,6 +14,8 @@ import recyclableProductCategoryReducer from '../features/recyclableProductCateg
 import recyclableProductReducer from '../features/recyclableProduct/recyclableProductSlice'
 import voluntaryDropPointReducer from '../features/voluntaryDropPoint/voluntaryDropPointSlice'
 import garbageTypeReducer from '../features/garbageType/garbageTypeSlice'
+import nutriScoreReducer from '../features/nutriScore/nutriScoreSlice'
+import ecoScoreReducer from '../features/ecoScore/ecoScoreSlice'
 
 export const store = configureStore({
   reducer: {
@@ -27,12 +28,13 @@ export const store = configureStore({
     certificat: certificatReducer,
     productCategory: productCategoryReducer,
     product: productReducer,
-    order: orderReducer,
     service: serviceReducer,
     plasticType: plasticTypeReducer,
     recyclableProductCategory: recyclableProductCategoryReducer,
     recyclableProduct: recyclableProductReducer,
     voluntaryDropPoint: voluntaryDropPointReducer,
     garbageType: garbageTypeReducer,
+    nutriScore: nutriScoreReducer,
+    ecoScore: ecoScoreReducer,
   },
 })

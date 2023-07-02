@@ -523,3 +523,16 @@ height: 100%;
   align-items: center;
   margin-top: 2rem;
 }
+
+.recycle-product-image {
+  height: 5rem;
+  width: 5rem;
+  object-fit: contain;
+}
+
+.recyclable-product-scores{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}

@@ -1,29 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import {
   getRecyclableProducts,
   createRecyclableProduct,
-} from '../../../features/recyclableProduct/recyclableProductSlice';
-import { getPlasticTypes } from '../../../features/plasticType/plasticTypeSlice';
-import Spinner from '../../../components/shared/spinner/Spinner';
-import { BackButton } from '../../../components/shared/BackButton';
-import Ticket from '../../../components/shared/ticket/Ticket';
-import { Link } from 'react-router-dom';
-import Modal from '../../../components/shared/modal/Modal';
-import { getRecyclableProductCategories } from '../../../features/recyclableProductCategory/recyclableProductCategorySlice';
+} from '../../../features/recyclableProduct/recyclableProductSlice'
+import { getPlasticTypes } from '../../../features/plasticType/plasticTypeSlice'
+import { getGarbageTypes } from '../../../features/garbageType/garbageTypeSlice'
+import { getNutriScores } from '../../../features/nutriScore/nutriScoreSlice'
+import { getEcoScores } from '../../../features/ecoScore/ecoScoreSlice'
+import Spinner from '../../../components/shared/spinner/Spinner'
+import SearchBar from '../../../components/shared/searchBar/SearchBar'
+import { BackButton } from '../../../components/shared/BackButton'
+import Ticket from '../../../components/shared/ticket/Ticket'
+import { Link } from 'react-router-dom'
+import Modal from '../../../components/shared/modal/Modal'
+import { getRecyclableProductCategories } from '../../../features/recyclableProductCategory/recyclableProductCategorySlice'
 
 function PrivateRecyclableProductsList() {
-  const dispatch = useDispatch();
-  const { recyclableProducts } = useSelector((state) => state.recyclableProduct);
-  const { plasticTypes } = useSelector((state) => state.plasticType);
-  const { recyclableProductCategories } = useSelector(
-    (state) => state.recyclableProductCategory
-  );
+  const dispatch = useDispatch()
+  const { recyclableProducts } = useSelector((state) => state.recyclableProduct)
+  const { plasticTypes } = useSelector((state) => state.plasticType)
+  const { garbageTypes } = useSelector((state) => state.garbageType)
+  const { nutriScores } = useSelector((state) => state.nutriScore)
+  const { ecoScores } = useSelector((state) => state.ecoScore)
 
-  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false);
+  const { recyclableProductCategories } = useSelector(
+    (state) => state.recyclableProductCategory,
+  )
+
+  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
   const [newProductData, setNewProductData] = useState({
     recyclableProductCategory: '',
     codeBarre: '',
@@ -31,74 +39,85 @@ function PrivateRecyclableProductsList() {
     marque: '',
     designation: '',
     remarque: '',
+    environementReglementation: '',
     recyclableByKrysto: true,
-    recyclabilityScore: 2,
-    plasticTypes: [],
+    ecoScores: '',
     nutriScore: '',
-    recyclingStatus: 'Enfoui ou incinéré',
+    plasticTypes: [],
+    garbageTypes: [],
+    transportation: 'Importée',
     containsPalmOil: false,
-  });
+  })
   const openNewProductModal = () => {
-    setIsNewProductModalOpen(true);
-  };
+    setIsNewProductModalOpen(true)
+  }
 
   const closeNewProductModal = () => {
-    setIsNewProductModalOpen(false);
-  };
+    setIsNewProductModalOpen(false)
+  }
 
   const handleNewProductChange = (e) => {
-    const { name, value, type, checked, options } = e.target;
+    const { name, value, type, checked, options } = e.target
 
     if (type === 'checkbox') {
       setNewProductData({
         ...newProductData,
         [name]: checked,
-      });
+      })
     } else if (type === 'select-multiple') {
       const selectedOptions = Array.from(options)
         .filter((option) => option.selected)
-        .map((option) => option.value);
+        .map((option) => option.value)
 
       setNewProductData({
         ...newProductData,
         [name]: selectedOptions,
-      });
+      })
     } else {
       setNewProductData({
         ...newProductData,
         [name]: value,
-      });
+      })
     }
-  };
+  }
 
   const handleNewProductSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     dispatch(createRecyclableProduct(newProductData))
       .then(() => {
-        toast.success('Le nouveau produit recyclable a été créé avec succès.');
+        toast.success('Le nouveau produit recyclable a été créé avec succès.')
         setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+          window.location.reload()
+        }, 3000)
       })
       .catch(() => {
-        toast.error("Une erreur s'est produite lors de la création du produit recyclable.");
-      });
-    closeNewProductModal();
-  };
+        toast.error(
+          "Une erreur s'est produite lors de la création du produit recyclable.",
+        )
+      })
+    closeNewProductModal()
+  }
 
   useEffect(() => {
-    dispatch(getRecyclableProducts());
-    dispatch(getPlasticTypes());
-    dispatch(getRecyclableProductCategories());
-  }, [dispatch]);
+    dispatch(getRecyclableProducts())
+    dispatch(getPlasticTypes())
+    dispatch(getRecyclableProductCategories())
+    dispatch(getGarbageTypes())
+    dispatch(getEcoScores())
+    dispatch(getNutriScores())
+  }, [dispatch])
+
 
   if (
     !recyclableProducts.data ||
     !plasticTypes.data ||
-    !recyclableProductCategories.data
+    !recyclableProductCategories.data ||
+    !garbageTypes.data ||
+    !nutriScores.data ||
+    !ecoScores.data
   ) {
-    return <Spinner />;
+    return <Spinner />
   }
 
   return (
@@ -110,17 +129,25 @@ function PrivateRecyclableProductsList() {
         <button onClick={openNewProductModal} className="btn">
           Créer un nouveau produit
         </button>
+        <SearchBar/>
       </section>
       <section>
         <div className="ticket-headings">
-          <p>Date de création</p>
+          <p>image</p>
           <p>Marque</p>
           <p>Désignation</p>
           <p>Actions</p>
         </div>
         {recyclableProducts.data.map((recyclableProduct) => (
           <Ticket key={recyclableProduct._id}>
-            <div>{recyclableProduct.recyclableProductCategory}</div>
+            <div>
+              {' '}
+              <img
+                className="recycle-product-image"
+                src={`${process.env.REACT_APP_BASE_API_URL_IMAGE}${recyclableProduct.photo}`}
+                alt=""
+              />
+            </div>
             <div>{recyclableProduct.marque}</div>
             <div>{recyclableProduct.designation}</div>
 
@@ -200,6 +227,16 @@ function PrivateRecyclableProductsList() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="environementReglementation">Environement & reglementation</label>
+            <input
+              type="text"
+              name="environementReglementation"
+              id="environementReglementation"
+              value={newProductData.environementReglementation}
+              onChange={handleNewProductChange}
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="recyclableByKrysto">Recyclable par Krysto</label>
             <input
               type="checkbox"
@@ -215,15 +252,62 @@ function PrivateRecyclableProductsList() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="recyclabilityScore">Score de recyclabilité</label>
-            <input
-              type="number"
-              name="recyclabilityScore"
-              id="recyclabilityScore"
-              value={newProductData.recyclabilityScore}
+            <label htmlFor="ecoScore">Eco-Score</label>
+            <select
+              name="ecoScore"
+              id="ecocore"
+              value={newProductData.ecoScore}
               onChange={handleNewProductChange}
-            />
+            >
+              <option value="">Sélectionnez un score</option>
+              {ecoScores.data.map((score) => (
+                <option key={score._id} value={score._id}>
+                  {score.score}
+                </option>
+              ))}
+            </select>
           </div>
+
+          <div className="form-group">
+            <label htmlFor="garbageTypes">Types d'ordures</label>
+            <select
+              name="garbageTypes"
+              id="garbageTypes"
+              multiple
+              value={newProductData.garbageTypes}
+              onChange={(e) => {
+                const selectedOptions = Array.from(
+                  e.target.selectedOptions,
+                  (option) => option.value,
+                )
+                setNewProductData((prevData) => ({
+                  ...prevData,
+                  garbageTypes: selectedOptions,
+                }))
+              }}
+            >
+              {garbageTypes.data.map((garbage) => (
+                <option key={garbage._id} value={garbage._id}>
+                  {garbage.name}
+                </option>
+              ))}
+            </select>
+            <div>
+              <p>Types d'ordures selectione :</p>
+              <ul>
+                {newProductData.garbageTypes.map((garbageTypeId) => (
+                  <li key={garbageTypeId}>
+                    {
+                      garbageTypes.data.find(
+                        (garbage) => garbage._id === garbageTypeId,
+                      ).name
+                    }
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
           <div className="form-group">
             <label htmlFor="plasticTypes">Types de plastique</label>
             <select
@@ -234,12 +318,12 @@ function PrivateRecyclableProductsList() {
               onChange={(e) => {
                 const selectedOptions = Array.from(
                   e.target.selectedOptions,
-                  (option) => option.value
-                );
-                setNewProductData({
-                  ...newProductData,
+                  (option) => option.value,
+                )
+                setNewProductData((prevData) => ({
+                  ...prevData,
                   plasticTypes: selectedOptions,
-                });
+                }))
               }}
             >
               {plasticTypes.data.map((plasticType) => (
@@ -248,6 +332,20 @@ function PrivateRecyclableProductsList() {
                 </option>
               ))}
             </select>
+            <div>
+              <p>Types de plastique sélectionnés :</p>
+              <ul>
+                {newProductData.plasticTypes.map((plasticTypeId) => (
+                  <li key={plasticTypeId}>
+                    {
+                      plasticTypes.data.find(
+                        (plasticType) => plasticType._id === plasticTypeId,
+                      ).sigleFr
+                    }
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="nutriScore">Nutri-Score</label>
@@ -258,32 +356,32 @@ function PrivateRecyclableProductsList() {
               onChange={handleNewProductChange}
             >
               <option value="">Sélectionnez un score</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
+
+              {nutriScores.data.map((score) => (
+                <option key={score._id} value={score._id}>
+                  {score.score}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="recyclingStatus">Statut de recyclage</label>
+            <label htmlFor="transportation">transport</label>
             <select
-              name="recyclingStatus"
-              id="recyclingStatus"
-              value={newProductData.recyclingStatus}
+              name="transportation"
+              id="transportation"
+              value={newProductData.transportation}
               onChange={handleNewProductChange}
             >
-              <option value="Recyclé en Nouvelle-Calédonie">
-                Recyclé en Nouvelle-Calédonie
+              <option value="Fabriquée en Nouvelle-Calédonie">
+                Fabriquée en Nouvelle-Calédonie
               </option>
-              <option value="Revalorisé à l'export">
-                Revalorisé à l'export
+              <option value="Transformée en Nouvelle-Calédonie">
+                Transformée en Nouvelle-Calédonie
               </option>
-              <option value="Enfoui ou incinéré">Enfoui ou incinéré</option>
+              <option value="Importée">Importée</option>
             </select>
           </div>
           <div className="form-group">
-            
             <label htmlFor="containsPalmOil">
               Contient de l'huile de palme
             </label>
@@ -301,12 +399,13 @@ function PrivateRecyclableProductsList() {
             />
           </div>
           <div className="form-group">
-
-          <button className='btn btn-block btn-danger' type="submit">Créer</button>
+            <button className="btn btn-block btn-danger" type="submit">
+              Créer
+            </button>
           </div>
         </form>
       </Modal>
-      <ToastContainer /> {/* Conteneur pour afficher les toasts */}
+      <ToastContainer /> 
     </>
   )
 }
